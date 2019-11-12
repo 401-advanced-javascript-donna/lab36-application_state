@@ -5,7 +5,6 @@ const initialState = {
   snacks: 0,
   naps: 0,
   studies: 0, 
-  count: 30
 };
 
 function reducer(state = initialState, action) {

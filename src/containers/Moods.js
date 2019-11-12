@@ -28,7 +28,6 @@ export const getFace = state => {
 };
 
 const mapStateToProps = state => ({
-  count: state.count,
   coffees: state.coffees,
   snacks: state.snacks,
   naps: state.naps,
@@ -46,11 +45,19 @@ const mapDispatchToProps = dispatch => ({
 
 // eslint-disable-next-line no-unused-vars
 const Moods = ({ handleSelection, face, coffees, snacks, naps, studies }) => {  
-  const controlActions = actions.map(action => ({
-    ...action,
-  }));
-  return (
+  const counts = {
+    coffees,
+    snacks,
+    naps, 
+    studies
+  };
 
+  const controlActions = actions.map(action => ({
+    ...action, 
+    count: counts[action.stateName]
+  }));
+
+  return (
     <>
       <Controls actions={controlActions} handleSelection={handleSelection}/>
       <Face emoji={face} />
@@ -69,7 +76,7 @@ Moods.propTypes = {
   coffees: PropTypes.number.isRequired,
   snacks: PropTypes.number.isRequired,
   naps: PropTypes.number.isRequired,
-  studies: PropTypes.number.isRequired
+  studies: PropTypes.number.isRequired,
 };
 
 export default MoodsContainer;
