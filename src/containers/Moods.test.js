@@ -1,5 +1,7 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { shallow } from 'enzyme';
+import store from '../store';
 import Moods, { isTired, isHyper, isEducated, isHungry, getFace } from './Moods';
 
 describe('Moods', () => {
@@ -41,15 +43,15 @@ describe('Moods', () => {
     });
 
     it('is sick if hyper and hungry', () => {
-      expect(getFace({ coffees: 4, snacks: 0 })).toEqual('🤢');
+      expect(getFace({ coffees: 4, snacks: 0 })).toEqual('🤮');
     });
 
     it('is sleeping if tired', () => {
-      expect(getFace({ coffees: 4, snacks: 0 })).toEqual('🤢');
+      expect(getFace({ coffees: 4, snacks: 0 })).toEqual('🤮');
     });
 
     it('is crazy if hyper', () => {
-      expect(getFace({ coffees: 4, naps: 0, snacks: 0, studies: 0 })).toEqual('🤢');
+      expect(getFace({ coffees: 4, naps: 0, snacks: 0, studies: 0 })).toEqual('🤮');
     });
 
     it('is mindblown if educated', () => {
@@ -66,37 +68,46 @@ describe('Moods', () => {
   });
 
   describe('container', () => {
-    it.skip('matches a snapshot', () => {
-      const wrapper = shallow(<Moods />);
+    let wrapper;
+    store.dispatch = jest.fn();
+    beforeEach(() => {
+      wrapper = shallow(<Moods store={store} />).dive();
+    });
+
+    it('matches a snapshot', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it.skip('updates state on DRINK_COFFEE selection', () => {
-      const wrapper = shallow(<Moods />);
-      wrapper.instance().handleSelection('DRINK_COFFEE');
+    it('updates state on DRINK_COFFEE selection', () => {
+      wrapper.props().handleSelection('DRINK_COFFEE');
 
-      expect(wrapper.state('coffees')).toEqual(1);
+      expect(store.dispatch).toHaveBeenCalledWith({
+        type: 'DRINK_COFFEE'
+      });
     });
 
-    it.skip('updates state on TAKE_NAP selection', () => {
-      const wrapper = shallow(<Moods />);
-      wrapper.instance().handleSelection('TAKE_NAP');
+    it('updates state on TAKE_NAP selection', () => {
+      wrapper.props().handleSelection('TAKE_NAP');
 
-      expect(wrapper.state('naps')).toEqual(1);
+      expect(store.dispatch).toHaveBeenCalledWith({
+        type: 'TAKE_NAP'
+      });
     });
 
-    it.skip('updates state on EAT_SNACK selection', () => {
-      const wrapper = shallow(<Moods />);
-      wrapper.instance().handleSelection('EAT_SNACK');
+    it('updates state on EAT_SNACK selection', () => {
+      wrapper.props().handleSelection('EAT_SNACK');
 
-      expect(wrapper.state('snacks')).toEqual(1);
+      expect(store.dispatch).toHaveBeenCalledWith({
+        type: 'EAT_SNACK'
+      });
     });
 
-    it.skip('updates state on STUDY selection', () => {
-      const wrapper = shallow(<Moods />);
-      wrapper.instance().handleSelection('STUDY');
+    it('updates state on STUDY selection', () => {
+      wrapper.props().handleSelection('STUDY');
 
-      expect(wrapper.state('studies')).toEqual(1);
+      expect(store.dispatch).toHaveBeenCalledWith({
+        type: 'STUDY'
+      });
     });
   });
 });
