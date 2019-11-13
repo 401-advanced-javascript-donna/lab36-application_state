@@ -5,22 +5,22 @@ exports[`Moods container matches a snapshot 1`] = `
   actions={
     Array [
       Object {
-        "count": undefined,
+        "count": 0,
         "name": "DRINK_COFFEE",
         "text": "Drink Coffee",
       },
       Object {
-        "count": undefined,
+        "count": 0,
         "name": "EAT_SNACK",
         "text": "Snack",
       },
       Object {
-        "count": undefined,
+        "count": 0,
         "name": "TAKE_NAP",
         "text": "Nap",
       },
       Object {
-        "count": undefined,
+        "count": 0,
         "name": "STUDY",
         "text": "Study",
       },
@@ -30,8 +30,10 @@ exports[`Moods container matches a snapshot 1`] = `
       },
     ]
   }
-  emoji="😀"
+  emoji="🤬"
+  handleSave={[Function]}
   handleSelection={[Function]}
+  histories={Array []}
   store={
     Object {
       "dispatch": [MockFunction],
