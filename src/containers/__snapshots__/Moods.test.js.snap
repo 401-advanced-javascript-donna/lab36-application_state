@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Moods container matches a snapshot 1`] = `
+<Moods
+  actions={
+    Array [
+      Object {
+        "count": 0,
+        "name": "DRINK_COFFEE",
+        "text": "Drink Coffee",
+      },
+      Object {
+        "count": 0,
+        "name": "EAT_SNACK",
+        "text": "Snack",
+      },
+      Object {
+        "count": 0,
+        "name": "TAKE_NAP",
+        "text": "Nap",
+      },
+      Object {
+        "count": 0,
+        "name": "STUDY",
+        "text": "Study",
+      },
+      Object {
+        "name": "RESET",
+        "text": "Reset",
+      },
+    ]
+  }
+  emoji="🤬"
+  handleSave={[Function]}
+  handleSelection={[Function]}
+  histories={Array []}
+  store={
+    Object {
+      "dispatch": [MockFunction],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+/>
+`;
