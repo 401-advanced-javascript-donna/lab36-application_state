@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { getCoffees, getSnacks, getNaps, getStudies } from '../selectors/moodSelector';
 import { isTired, isHyper, isEducated, isHungry } from '../selectors/moodSelector';
 
